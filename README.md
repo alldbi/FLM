@@ -10,5 +10,5 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 - CV2
 
 ### Pretrained models
-- Download pretrained "Inception ResNet v1" model trained on the "CASIA-WebFace" dataset from [facenet](https://github.com/davidsandberg/facenet).
+- Download pretrained "Inception ResNet v1" model, trained on the "CASIA-WebFace" dataset from [facenet](https://github.com/davidsandberg/facenet).
 
