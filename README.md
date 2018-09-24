@@ -4,7 +4,7 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 
 ### Sample results
 Test results on LFW with 8 landmarks (K=8, M=4), trained on CelebA dataset for 2 epochs.
-![](https://github.com/alldbi/Factorized-Spatial-Embeddings/blob/master/test_samples/test-K8M4.png)
+![](https://github.com/alldbi/FLM/blob/master/sample_results/resultss.png)
 
 ## Setup
 
