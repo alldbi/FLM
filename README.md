@@ -45,3 +45,10 @@ python main.py \
   --output_dir "path to the directory to save results"
   --epsilon "coefficient for a scaling the gradient sign for each single iteration of the attack"
 ```
+
+## Citation
+If you use this code for your research, please cite the paper: <a href="https://arxiv.org/pdf/.pdf">Fast Geometrically-Perturbed Adversarial Faces</a>:
+
+```
+citation will be added 
+```
