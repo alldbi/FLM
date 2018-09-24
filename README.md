@@ -6,8 +6,9 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 
 ### Prerequisites
 - Tensorflow 1.4.1
-- Dlib 
 - CV2
+- Dlib 
+- Matplotlib
 
 ### Pretrained models
 - [Download](https://drive.google.com/file/d/1R77HmFADxe87GmoLwzfgMu_HY0IhcyBz/view) pretrained "Inception ResNet v1" model, trained on the "CASIA-WebFace" dataset provided by [facenet](https://github.com/davidsandberg/facenet).
