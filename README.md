@@ -20,8 +20,8 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 # clone this repo
 git clone https://github.com/alldbi/FLM.git
 cd FLM
-```
-#### Geneting adversarial faces by Grouped FLM:
+
+# Geneting adversarial faces by Grouped FLM:
 
 
 python main.py \
@@ -30,4 +30,4 @@ python main.py \
   --max_epochs 200 \
   --input_dir facades/train \
   --which_direction BtoA
-
+```
