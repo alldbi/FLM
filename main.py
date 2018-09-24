@@ -235,3 +235,4 @@ def main(args):
 
 if __name__ == '__main__':
     main(parse_arguments(sys.argv[1:]))
+    main(parse_arguments(sys.argv[1:]))
