@@ -8,17 +8,16 @@ import os.path
 import sys
 import cv2
 import dlib
-import matplotlib.pyplot as plt
 import numpy as np
-import scipy.misc
 import tensorflow as tf
 import tensorflow.contrib.slim as slim
 from imutils import face_utils
 from src.models import inception_resnet_v1
 from utils.ThinPlateSpline2 import ThinPlateSpline2 as TPS
 from utils.attack_util import purturb_GFLM
-
-
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
 
 def parse_arguments(argv):
     parser = argparse.ArgumentParser()
@@ -54,7 +53,7 @@ def parse_arguments(argv):
 
 
     # FLM and GFLM args
-
+    parser.add_argument("--mode", default="FLM", choices=["FLM", "GFLM"])
     parser.add_argument('--epsilon', type=float,
                         help='Coefficient of perturbation for each single step.', default=0.005)
     parser.add_argument('--img', type=str,
@@ -82,7 +81,6 @@ def image_warping(img, lndA, lndB):
     return t_img, T
 
 def main(args):
-
 
     # set random seed
     np.random.seed(seed=args.seed)
@@ -196,45 +194,43 @@ def main(args):
                 break
             epsilon = args.epsilon
 
-            lnd_adv = purturb_GFLM(lnd_adv, grad=grad_, epsilon=epsilon)
+            if args.mode=="GFLM":
+                lnd_adv = purturb_GFLM(lnd_adv, grad=grad_, epsilon=epsilon)
+            else:
+                lnd_adv = lnd_adv + np.sign(grad_) * epsilon
 
+
+        if not os.path.exists(args.output_dir):
+            os.makedirs(args.output_dir)
 
         img_d = img_d.reshape([182, 182, 3])
 
+        def prepare_for_save(x):
+            x = (x - x.min()) / (x.max() - x.min())
+            x = (x*255.).astype(np.uint8)
+            x = x[..., ::-1]
+            return x
         def mapback(x):
             return (x + 1.) * 182. / 2.
 
-        plt.subplot(131)
-        plt.imshow((img - img.min()) / (img.max() - img.min()))
-        plt.scatter(mapback(lnd[:, 0]), mapback(lnd[:, 1]))
-        plt.subplot(132)
-        plt.imshow((img_d - img_d.min()) / (img_d.max() - img_d.min()))
-        plt.show()
-        scipy.misc.imsave('adv_group.jpg', (img_d - img_d.min()) / (img_d.max() - img_d.min()))
+        # save output images
+        cv2.imwrite(os.path.join(args.output_dir, "output_original.png"), prepare_for_save(img))
+        cv2.imwrite(os.path.join(args.output_dir, "output_"+args.mode+".png"), prepare_for_save(img_d))
 
-        soa = np.array([[0, 0, 3, 2], [0, 0, 1, 1], [0, 0, 9, 9]])
         plt.figure()
-        X, Y, U, V = zip(*soa)
-        X = (lnd[0:68, 0] + 1.) * (91. + 20.) - 40.
-        Y = (lnd[0:68, 1] + 1.) * (91. + 20.) - 40.
+        X = (lnd[0:68, 0] + 1.) * (91.)
+        Y = (lnd[0:68, 1] + 1.) * (91.)
         U = (lnd_adv[0:68, 0] - lnd[0:68, 0]) * 620.
         V = (lnd_adv[0:68, 1] - lnd[0:68, 1]) * 620.
         ax = plt.gca()
 
         ax.imshow(np.ones([182, 182, 3]))
-        # ax.scatter((lnd[:, 0]+1.)*91., (lnd[:, 1]+1.)*91., marker='.', c='blue')
         ax.quiver(X, Y, U, V, angles='xy', scale_units='xy', scale=1, color='r',
-                  width=0.005)  # , headwidth=1, headlength=1)
-        # ax.imshow((img-img.min())/(img.max()-img.min()))
+                  width=0.005)
         ax.axis('off')
         plt.draw()
-        plt.savefig('quiver_group.png', dpi=300, bbox_inches='tight')
+        plt.savefig(os.path.join(args.output_dir, "Flow_"+ args.mode +".png"), bbox_inches='tight')
         plt.show()
-
-        exit()
-
-
-
 
 
 if __name__ == '__main__':
