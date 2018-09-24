@@ -14,24 +14,20 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 
 - [Download](http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2) the file and extract it to get the "shape_predictor_68_face_landmarks.dat" pretrained model for [DLib](http://dlib.net/) landmark detector.
 
-### Generating adversarial faces
+### Getting Started
 
 ```sh
 # clone this repo
-git clone https://github.com/affinelayer/pix2pix-tensorflow.git
-cd pix2pix-tensorflow
-# download the CMP Facades dataset (generated from http://cmp.felk.cvut.cz/~tylecr1/facade/)
-python tools/download-dataset.py facades
-# train the model (this may take 1-8 hours depending on GPU, on CPU you will be waiting for a bit)
-python pix2pix.py \
-  --mode train \
+git clone https://github.com/alldbi/FLM.git
+cd FLM
+```
+#### Geneting adversarial faces by Grouped FLM:
+
+
+python main.py \
+  --method FLM \
   --output_dir facades_train \
   --max_epochs 200 \
   --input_dir facades/train \
   --which_direction BtoA
-# test the model
-python pix2pix.py \
-  --mode test \
-  --output_dir facades_test \
-  --input_dir facades/val \
-  --checkpoint facades_train
+
