@@ -45,5 +45,3 @@ python main.py \
   --output_dir "path to the directory to save results"
   --epsilon "coefficient for a scaling the gradient sign for each single iteration of the attack"
 ```
-
-```
