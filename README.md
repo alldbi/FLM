@@ -23,7 +23,7 @@ cd FLM
 
 # Generating adversarial faces by Grouped FLM:
 python main.py \
-  --method FLM \
+  --method GFLM \
   --output_dir facades_train \
   --max_epochs 200 \
   --input_dir facades/train \
