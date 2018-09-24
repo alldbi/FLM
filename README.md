@@ -22,8 +22,6 @@ git clone https://github.com/alldbi/FLM.git
 cd FLM
 
 # Geneting adversarial faces by Grouped FLM:
-
-
 python main.py \
   --method FLM \
   --output_dir facades_train \
