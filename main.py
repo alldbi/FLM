@@ -57,14 +57,14 @@ def parse_arguments(argv):
     parser.add_argument('--epsilon', type=float,
                         help='Coefficient of perturbation for each single step.', default=0.005)
     parser.add_argument('--img', type=str,
-                        help='Path to the data directory containing aligned face patches.',
+                        help='Path to the input image.',
                         default='/home/aldb/shared320/comparison/58_39s.pngorig.png')
     parser.add_argument('--label', type=int,
                         help='True label of the input image.',
                         default=58)
     parser.add_argument('--output_dir', type=str,
                         help='Directly where output files will be saved.',
-                        default='./output/')
+                        default='output')
     parser.add_argument('--fixed_points', type=int,
                         help='Number of fixed points on each side of the image to force the edge condition on the transformation.', default=4)
 
@@ -234,5 +234,4 @@ def main(args):
 
 
 if __name__ == '__main__':
-    main(parse_arguments(sys.argv[1:]))
     main(parse_arguments(sys.argv[1:]))
