@@ -25,8 +25,22 @@ cd FLM
 # Generating adversarial faces by Grouped FLM:
 python main.py \
   --method GFLM \
-  --output_dir facades_train \
-  --max_epochs 200 \
-  --input_dir facades/train \
-  --which_direction BtoA
+  --pretrained_model "path to the Inception ResNet v1 model trained on CASIA-WebFace" \
+  --dlib_model "path to the pretrained model of the Dlib landmark detector" \
+  --img "path to the input image" \
+  --label "label of the input image" \
+  --output_dir "path to the directory to save results"
+  --epsilon "coefficient for a scaling the gradient sign for each single iteration of the attack"
+
+# Generating adversarial faces by FLM:
+python main.py \
+  --method GFLM \
+  --pretrained_model "path to the Inception ResNet v1 model trained on CASIA-WebFace" \
+  --dlib_model "path to the pretrained model of the Dlib landmark detector" \
+  --img "path to the input image" \
+  --label "label of the input image" \
+  --output_dir "path to the directory to save results"
+  --epsilon "coefficient for a scaling the gradient sign for each single iteration of the attack"
+```
+
 ```
