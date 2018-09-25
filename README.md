@@ -47,7 +47,7 @@ python main.py \
 ```
 
 ## Citation
-If you use this code for your research, please cite the paper: <a href="https://arxiv.org/pdf/.pdf">Fast Geometrically-Perturbed Adversarial Faces</a>:
+If you use this code for your research, please cite the paper: <a href="https://arxiv.org/abs/1809.08999">Fast Geometrically-Perturbed Adversarial Faces</a>:
 
 ```
 citation will be added 
