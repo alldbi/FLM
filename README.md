@@ -49,9 +49,12 @@ python main.py \
 ## Citation
 If you use this code for your research, please cite the paper: <a href="https://arxiv.org/abs/1809.08999">Fast Geometrically-Perturbed Adversarial Faces</a>:
 
-```
-citation will be added 
-```
+@article{dabouei2018fast,
+  title={Fast Geometrically-Perturbed Adversarial Faces},
+  author={Dabouei, Ali and Soleymani, Sobhan and Dawson, Jeremy and Nasrabadi, Nasser M},
+  journal={arXiv preprint arXiv:1809.08999},
+  year={2018}
+}
 
 ## References
 - [FaceNet](https://github.com/davidsandberg/facenet)
