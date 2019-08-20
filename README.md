@@ -9,6 +9,7 @@ Tensorflow implementation of "fast landmark manipulation method" (FLM) and "grou
 
 ### Prerequisites
 - Tensorflow 1.4.1
+- Python 2.7
 - CV2
 - Dlib 
 - Matplotlib
