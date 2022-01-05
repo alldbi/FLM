@@ -35,7 +35,7 @@ import sys
 import math
 import pickle
 from sklearn.svm import SVC
-
+##### This is the classifier
 def main(args):
   
     with tf.Graph().as_default():
